@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prawasyaari - Your Travel Companion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>PRAWASYAARI</h1>
+        <div class="search-container">
+            <input type="text" id="citySearch" list="destinations" placeholder="Search City or Place " onkeyup="filterCities()">
+            <datalist id="destinations">
+                <option value="Gateway of India">
+                <option value="Marine Drive">
+                <option value="Shaniwar Wada">
+                <option value="Sinhagad Fort">
+                <option value="Hawa Mahal">
+                <option value="Mumbai">
+                <option value="Pune">
+                <option value="Jaipur">
+            </datalist>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Popular Destinations</h2>
+        <div class="city-grid" id="cityGrid">
+            
+            <div class="city-card" data-name="mumbai" onclick="openCityModal('Mumbai')">
+                <img src="/IMAGES/GATEWAY.jpg" class="city-img" alt="Mumbai">
+                <div class="city-info">
+                    <h3>Mumbai</h3>
+                    <p>The City of Dreams. Famous for Gateway of India.</p>
+                    <div class="btn-explore">Explore Guide</div>
+                </div>
+            </div>
+
+            <div class="city-card" data-name="pune" onclick="openCityModal('Pune')">
+                <img src="/IMAGES/SHANIWARWADA.jpg" class="city-img" alt="Pune">
+                <div class="city-info">
+                    <h3>Pune</h3>
+                    <p>The Oxford of the East. Famous for Shaniwar Wada.</p>
+                    <div class="btn-explore">Explore Guide</div>
+                </div>
+            </div>
+
+            <div class="city-card" data-name="jaipur" onclick="openCityModal('Jaipur')">
+                <img src="/IMAGES/HAWAMAHAL.jpg" class="city-img" alt="Jaipur">
+                <div class="city-info">
+                    <h3>Jaipur</h3>
+                    <p>The Pink City. Famous for Hawa Mahal.</p>
+                    <div class="btn-explore">Explore Guide</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="demoModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="document.getElementById('demoModal').style.display='none'">×</span>
+            
+            <h2 id="modalTitle" style="color:var(--primary); margin:0;">City Name</h2>
+            <img id="modalImg" src="" style="width:100%; height:280px; object-fit:cover; border-radius:12px; margin:15px 0;">
+
+            <div class="amenities-box">
+                <h3 style="margin:0; font-size:1.1rem; color:#00796b;">📍 Nearby Amenities in <span id="cityLabel"></span></h3>
+                <div class="amenity-grid" id="amenityLinks">
+                    </div>
+            </div>
+
+            <h3 style="border-bottom: 2px solid #eee; padding-bottom: 10px;">📸 Top Places to Visit</h3>
+            <div id="placesExplorer" class="places-grid">
+                </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

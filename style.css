@@ -39,6 +39,13 @@
             padding: 40px 20px;
         }
 
+        #modalImg{
+            width: 100%;
+            margin-top: 15px;
+            height: 40%;
+            border-radius: 12px;
+            
+        }
         .section-title {
             text-align: center;
             margin-bottom: 40px;
@@ -61,7 +68,8 @@
         .city-card {
             background: var(--white);
             border-radius: 12px;
-            width: 95%;
+            width: 97%;
+            height: 100%;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -139,8 +147,12 @@
         @media(max-width: 600px) {
             header h1 { font-size: 2rem; }
             .city-grid { grid-template-columns: 1fr; }
+            #citySearch{
+                padding: 12px 6px 10px 15px;
+            }
         }
      
+        
         /* --- CSS STYLING --- */
         :root {
             --primary: #009688;
@@ -194,7 +206,7 @@
         .btn-explore { background: var(--accent); color: white; padding: 10px; border-radius: 8px; font-weight: bold; margin-top: 10px; }
 
         /* Modal Styling */
-        #demoModal { 
+        .modal { 
             display:none; 
             position:fixed; 
             top:0; left:0; width:100%; height:100%; 
@@ -203,6 +215,7 @@
             justify-content:center; 
             align-items:center; 
             backdrop-filter: blur(5px); 
+            border-radius: 12px;
         }
         .modal-content { 
             background:white; 

@@ -54,42 +54,67 @@
         };
 
         // --- 2. Modal Logic ---
-        function openCityModal(city) {
-            let key = city.toLowerCase();
-            let data = cityData[key];
-            if(!data) return;
+        
 
-            document.getElementById('demoModal').style.display = 'flex';
-            document.getElementById('modalTitle').innerText = city;
-            document.getElementById('cityLabel').innerText = city;
-            document.getElementById('modalImg').src = data.mainImg;
+        // --- LOAD DATA FROM DATABASE (Admin Panel) ---
+// 1. डेटा रेंडर करना (ताकि Admin वाला डेटा फ्रंट पेज पर दिखे)
+function renderCities() {
+    let storedData = JSON.parse(localStorage.getItem('prawasyaariData')) || {};
+    let grid = document.getElementById('cityGrid');
+    if(!grid) return; 
+    
+    grid.innerHTML = ""; 
 
-            // Load Amenities
-            const amens = [
-                {n: "Hotels", i: "🏨"}, {n: "Restaurants", i: "🍽️"}, 
-                {n: "ATM", i: "🏧"}, {n: "Petrol Pump", i: "⛽"}, {n: "Hospital", i: "🏥"}
-            ];
-            document.getElementById('amenityLinks').innerHTML = amens.map(a => `
-                <a href="https://www.google.com/maps/search/${a.n}+near+${city}" target="_blank" class="amenity-btn">
-                    ${a.i} ${a.n}
-                </a>
-            `).join('');
+    for (let key in storedData) {
+        let city = storedData[key];
+        grid.innerHTML += `
+            <div class="city-card" data-name="${key}">
+                <img src="${city.img}" class="city-img">
+                <div class="city-info">
+                    <h3 class="city-name">${city.name}</h3>
+                    <p class="city-desc">${city.desc}</p>
+                    <button class="btn-explore" onclick="openCityModal('${key}')">Explore Guide</button>
+                </div>
+            </div>`;
+    }
+}
 
-            // Load Places
-            document.getElementById('placesExplorer').innerHTML = data.places.map(p => {
-                let pId = 'place-' + p.name.toLowerCase().replace(/\s+/g, '-');
-                let mapUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(p.address)}`;
-                return `
-                    <div class="place-item" id="${pId}">
-                        <img src="${p.img}">
-                        <h4>${p.name}</h4>
-                        <p>${p.desc}</p>
-                        <div class="reach-box"><b>🚆 How to Reach:</b> ${p.reach}</div>
-                        <a href="${mapUrl}" target="_blank" class="direction-btn">📍 Get Directions</a>
-                    </div>
-                `;
-            }).join('');
+// 2. Modal खोलने का सही तरीका (ID: cityModal इस्तेमाल करें)
+function openCityModal(cityKey) {
+    let storedData = JSON.parse(localStorage.getItem('prawasyaariData')) || {};
+    let data = storedData[cityKey];
+
+    if(data) {
+        document.getElementById('modalTitle').innerText = data.name;
+        document.getElementById('modalImg').src = data.img;
+        document.getElementById('modalReach').innerText = data.reach;
+
+        
+        
+        
+        let list = document.getElementById('modalPlacesList');
+        list.innerHTML = ""; // Purani list saaf karne ke liye
+
+        // Places ko ek-ek karke dikhane ke liye loop
+        if(data.places && Array.isArray(data.places)) {
+            data.places.forEach(place => {
+                let li = document.createElement('li');
+                li.innerText = place;
+                list.appendChild(li);
+            });
+        } else {
+            list.innerHTML = "<li>No places found</li>";
         }
+
+        document.getElementById('cityModal').style.display = 'flex';
+    }
+}
+
+function closeModal() {
+    document.getElementById('cityModal').style.display = 'none';
+}
+
+window.onload = renderCities;
 
         // --- 3. Smart Search Function ---
         function filterCities() {

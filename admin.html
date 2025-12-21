@@ -2,22 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prawasyaari - Admin Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root { --primary: #ff6b6b; --dark: #2d3436; }
-        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; }
-        .admin-container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-        h2 { color: var(--dark); border-bottom: 2px solid var(--primary); padding-bottom: 10px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; }
-        button { background: var(--primary); color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-size: 16px; margin-top: 10px; }
-        button:hover { background: #fa5252; }
-        .city-list { margin-top: 30px; }
-        .city-item { display: flex; justify-content: space-between; padding: 15px; border-bottom: 1px solid #eee; background: #fafafa; margin-bottom: 10px; border-radius: 8px; }
-        .btn-delete { background: #e03131; padding: 5px 10px; font-size: 12px; }
-    </style>
+    <link rel="stylesheet" href="admin-style.css">
 </head>
 <body>
 
@@ -27,86 +15,39 @@
     <div id="cityForm">
         <div class="form-group">
             <label>City Name</label>
-            <input type="text" id="adminCityName" placeholder="e.g. Goa">
+            <input type="text" id="adminCityName" placeholder="e.g. Mumbai">
         </div>
         <div class="form-group">
             <label>Short Description</label>
-            <input type="text" id="adminCityDesc" placeholder="e.g. Beaches and Sunsets">
+            <input type="text" id="adminCityDesc" placeholder="e.g. The City of Dreams">
         </div>
         <div class="form-group">
             <label>Image URL</label>
-            <input type="text" id="adminCityImg" placeholder="Link to image">
+            <input type="text" id="adminCityImg" placeholder="Direct image link (https://...)">
         </div>
         <div class="form-group">
-            <label>How to Reach (Use '\n' for new lines)</label>
+            <label>How to Reach</label>
             <textarea id="adminCityReach" rows="3" placeholder="Air: ... Rail: ..."></textarea>
         </div>
         <div class="form-group">
             <label>Top Places (Comma separated)</label>
-            <input type="text" id="adminCityPlaces" placeholder="Place 1, Place 2, Place 3">
+            <input type="text" id="adminCityPlaces" placeholder="Gateway, Juhu, Marine Drive">
         </div>
-        <button onclick="saveCity()"><i class="fas fa-plus"></i> Add/Update City</button>
+        <button id="saveBtn"><i class="fas fa-cloud-upload-alt"></i> Save to Live Database</button>
     </div>
 
     <div class="city-list">
-        <h3>Existing Cities</h3>
-        <div id="displayCityList"></div>
+        <h3><i class="fas fa-database"></i> Live Cities in Database</h3>
+        <div id="displayCityList">Loading live data...</div>
     </div>
     
-    <br>
-    <a href="index.html" target="_blank">View Main Website</a>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="index.html" target="_blank" class="view-site-link">
+            <i class="fas fa-external-link-alt"></i> View Main Website
+        </a>
+    </div>
 </div>
 
-<script>
-    // LocalStorage से डेटा लोड करना
-    function loadAdminData() {
-        let cities = JSON.parse(localStorage.getItem('prawasyaariData')) || {};
-        let listDiv = document.getElementById('displayCityList');
-        listDiv.innerHTML = "";
-
-        for (let key in cities) {
-            listDiv.innerHTML += `
-                <div class="city-item">
-                    <span><strong>${cities[key].name}</strong></span>
-                    <button class="btn-delete" onclick="deleteCity('${key}')">Delete</button>
-                </div>`;
-        }
-    }
-
-    function saveCity() {
-        let name = document.getElementById('adminCityName').value;
-        let desc = document.getElementById('adminCityDesc').value;
-        let img = document.getElementById('adminCityImg').value;
-        let reach = document.getElementById('adminCityReach').value;
-        let places = document.getElementById('adminCityPlaces').value.split(',');
-
-        if(!name) return alert("City Name is required!");
-
-        let cities = JSON.parse(localStorage.getItem('prawasyaariData')) || {};
-        
-        cities[name.toLowerCase()] = {
-            name: name,
-            desc: desc,
-            img: img,
-            reach: reach,
-            places: places.map(p => p.trim())
-        };
-
-        localStorage.setItem('prawasyaariData', JSON.stringify(cities));
-        alert("City Saved Successfully!");
-        loadAdminData();
-    }
-
-    
-    function deleteCity(key) {
-        let cities = JSON.parse(localStorage.getItem('prawasyaariData')) || {};
-        delete cities[key];
-        localStorage.setItem('prawasyaariData', JSON.stringify(cities));
-        loadAdminData();
-    }
-
-    loadAdminData();
-</script>
-
+<script type="module" src="admin-script.js"></script>
 </body>
 </html>

@@ -1,0 +1,42 @@
+:root { --primary: #ff6b6b; --dark: #2d3436; --success: #2ecc71; }
+body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; }
+
+.admin-container { 
+    max-width: 800px; margin: auto; background: white; 
+    padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); 
+}
+
+h2 { color: var(--dark); border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-top: 0; }
+
+.form-group { margin-bottom: 15px; }
+label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+
+input, textarea { 
+    width: 100%; padding: 12px; border: 1px solid #ddd; 
+    border-radius: 8px; box-sizing: border-box; transition: 0.3s; 
+}
+
+input:focus, textarea:focus { border-color: var(--primary); outline: none; }
+
+button { 
+    background: var(--primary); color: white; border: none; padding: 12px 25px; 
+    border-radius: 8px; cursor: pointer; font-size: 16px; width: 100%; transition: 0.3s; 
+}
+
+button:hover { background: #fa5252; }
+button:disabled { background: #ccc; }
+
+.city-list { margin-top: 30px; border-top: 2px solid #eee; padding-top: 20px; }
+
+.city-item { 
+    display: flex; justify-content: space-between; align-items: center; 
+    padding: 15px; border: 1px solid #eee; background: #fafafa; 
+    margin-bottom: 10px; border-radius: 8px; 
+}
+
+.btn-delete { 
+    background: #e03131; color: white; border: none; 
+    padding: 8px 15px; border-radius: 5px; cursor: pointer; width: auto; 
+}
+
+.view-site-link { color: var(--primary); text-decoration: none; font-weight: bold; }

@@ -3,96 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prawasyaari - Your Travel Companion</title>
+    <title>Prawasyaari - Your Travel Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>PRAWASYAARI</h1>
-        <div class="search-container">
-            <input type="text" id="citySearch" list="destinations" placeholder="Search City or Place " onkeyup="filterCities()">
-            <datalist id="destinations">
-                <option value="Gateway of India">
-                <option value="Marine Drive">
-                <option value="Shaniwar Wada">
-                <option value="Sinhagad Fort">
-                <option value="Hawa Mahal">
-                <option value="Mumbai">
-                <option value="Pune">
-                <option value="Jaipur">
-            </datalist>
+<header>
+    <h1>Prawasyaari</h1>
+    <p>Khojiye Bharat ke Khoobsurat Shahar</p>
+</header>
+
+<div class="search-container">
+    <input type="text" id="citySearch" placeholder="Search city or famous places..." onkeyup="filterCities()">
+</div>
+
+<div class="container">
+    <div class="center-wrapper"><h2 class="section-title">Popular Destinations</h2></div>
+    <div class="city-grid" id="cityGrid">
         </div>
-    </header>
+</div>
 
-    <div class="container">
-        <h2 class="section-title">Popular Destinations</h2>
-        <div class="city-grid" id="cityGrid">
-            
-            <div class="city-card" data-name="mumbai" onclick="openCityModal('Mumbai')">
-                <img src="/IMAGES/GATEWAY.jpg" class="city-img" alt="Mumbai">
-                <div class="city-info">
-                    <h3>Mumbai</h3>
-                    <p>The City of Dreams. Famous for Gateway of India.</p>
-                    <div class="btn-explore">Explore Guide</div>
-                </div>
-            </div>
-
-            <div class="city-card" data-name="pune" onclick="openCityModal('Pune')">
-                <img src="/IMAGES/SHANIWARWADA.jpg" class="city-img" alt="Pune">
-                <div class="city-info">
-                    <h3>Pune</h3>
-                    <p>The Oxford of the East. Famous for Shaniwar Wada.</p>
-                    <div class="btn-explore">Explore Guide</div>
-                </div>
-            </div>
-
-            <div class="city-card" data-name="jaipur" onclick="openCityModal('Jaipur')">
-                <img src="/IMAGES/HAWAMAHAL.jpg" class="city-img" alt="Jaipur">
-                <div class="city-info">
-                    <h3>Jaipur</h3>
-                    <p>The Pink City. Famous for Hawa Mahal.</p>
-                    <div class="btn-explore">Explore Guide</div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div id="cityModal" class="modal">
+<div id="cityModal" class="modal">
     <div class="modal-content">
-        <span onclick="closeModal()" class="close-btn">×</span>
-        
-        <h2 id="modalTitle" style="border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 25px;">City Name</h2>
+        <span class="close-btn" onclick="closeModal()">×</span>
+        <h2 id="modalTitle" class="city-name">City Name</h2>
         <img id="modalImg" src="" alt="City Image">
         
-        <div class="info-section">
-            <h3 style="border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 25px;"><i class="fas fa-plane"></i> How to Reach</h3>
-            <p id="modalReach" style="white-space: pre-line; color: #555;"></p>
+        <div id="reachSection">
+            <h3><i class="fas fa-route"></i> How to Reach</h3>
+            <p id="modalReach"></p>
         </div>
 
-        <div class="info-section">
-            <h3 style="border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 25px;"><i class="fas fa-camera"></i> Top Places to Visit</h3>
-             
-            <ul id="modalPlacesList">
-                
-                </ul>
-        </div>
+        <h3><i class="fas fa-star"></i> Top Places to Visit</h3>
+        <ul id="modalPlacesList"></ul>
 
-        <div class="info-section">
-            <h3 style="border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 25px;"><i class="fas fa-map-marker-alt"></i> Nearby Amenities</h3>
+        <div class="amenities-box">
+            <h4><i class="fas fa-concierge-bell"></i> Quick Amenities (Near You)</h4>
             <div class="amenity-grid">
-                <a id="link-hotel" href="https://www.google.com/maps/search/${Hotels}+near+${city}" target="_blank" class="amenity-btn">🏨 Hotels</a>
-                <a id="link-food" href="https://www.google.com/maps/search/${Restaurants}+near+${city}" target="_blank" class="amenity-btn">🍽️ Food</a>
-                <a id="link-petrol" href="https://www.google.com/maps/search/${Petrol}+near+${city}" target="_blank" class="amenity-btn">⛽ Petrol</a>
-                <a id="link-atm" href="https://www.google.com/maps/search/${ATM}+near+${city}" target="_blank" class="amenity-btn">🏧 ATM</a>
+                <a id="link-hotel" class="amenity-btn" target="_blank"><i class="fas fa-hotel"></i> Hotels</a>
+                <a id="link-food" class="amenity-btn" target="_blank"><i class="fas fa-utensils"></i> Restaurants</a>
+                <a id="link-petrol" class="amenity-btn" target="_blank"><i class="fas fa-gas-pump"></i> Petrol</a>
+                <a id="link-atm" class="amenity-btn" target="_blank"><i class="fas fa-money-bill-wave"></i> ATMs</a>
             </div>
         </div>
     </div>
 </div>
-<footer>
-<p>Copyright © 2025 Prawasyaari - Your Ultimate Travel Companion. All rights reserved.</p></footer>
 
-    <script src="script.js"></script>
+<footer>
+    <p>© 2025 Prawasyaari - Made with ❤️ for Travelers</p>
+</footer>
+
+<script type="module" src="script.js"></script>
+
 </body>
 </html>

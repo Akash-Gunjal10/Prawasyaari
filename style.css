@@ -1,263 +1,98 @@
+/* --- CSS VARIABLES & RESET --- */
+:root {
+    --primary: #009688; 
+    --secondary: #ff9800; 
+    --dark: #263238;
+    --light: #f5f5f5;
+    --white: #ffffff;
+}
 
-        /* --- CSS VARIABLES & RESET --- */
-        :root {
-            --primary: #009688; 
-            --secondary: #ff9800; 
-            --dark: #263238;
-            --light: #f5f5f5;
-            --white: #ffffff;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
-        
-        body { background-color: var(--light); color: var(--dark); }
-        a { text-decoration: none; color: inherit; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
 
-       
-        header h1 { font-size: 3rem; margin-bottom: 10px; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-        header p { font-size: 1.2rem; opacity: 0.95; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
 
-        /* --- SEARCH BAR --- */
-        .search-container {
-            margin-top: 10px;
-            margin-left: 10px;
-        }
-        #citySearch {
-            padding: 15px 10px 15px 15px;
-            width: 100%;
-            max-width: 500px;
-            border: none;
-            border-radius: 30px;
-            font-size: 1rem;
-            outline: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
+header { 
+    background: var(--primary); 
+    color: white; 
+    padding: 30px 5%; 
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 
-        /* --- CONTAINER --- */
-        .container {
-            max-width: 1200px;
-           margin: 0 auto;
-            padding: 40px 20px;
-        }
+header h1 { font-size: 2.5rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
 
-        #modalImg{
-            width: 100%;
-            margin-top: 15px;
-            height: 40%;
-            border-radius: 12px;
-            
-        }
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 2rem;
-            color: var(--primary);
-            text-transform: uppercase;
-            border-bottom: 3px solid var(--secondary);
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-        .center-wrapper { text-align: center; }
+/* --- SEARCH BAR --- */
+.search-container { margin: 20px auto; text-align: center; width: 90%; max-width: 500px; }
+#citySearch {
+    padding: 15px 25px;
+    width: 100%;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    outline: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
 
-        /* --- CITY GRID --- */
-        .city-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+/* --- GRID SYSTEM --- */
+.container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+.section-title { 
+    text-align: center; margin-bottom: 40px; font-size: 2rem; 
+    color: var(--primary); text-transform: uppercase; 
+    border-bottom: 3px solid var(--secondary); display: inline-block; padding-bottom: 5px;
+}
+.center-wrapper { text-align: center; }
 
-        .city-card {
-            background: var(--white);
-            border-radius: 12px;
-            width: 97%;
-            height: 100%;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .city-card:hover { 
-            transform: translateY(-8px); 
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-        }
-        
-        .city-img {
-            height: 220px;
-            width: 100%;
-            object-fit: cover;
-        }
-        
-        .city-info { padding: 25px; }
-        .city-name { font-size: 1.6rem; margin-bottom: 10px; color: var(--dark); font-weight: 700; }
-        .city-desc { font-size: 0.95rem; color: #555; margin-bottom: 20px; line-height: 1.5; }
-        
-        .btn-explore {
-            display: inline-block;
-            background: var(--primary);
-            color: var(--white);
-            padding: 10px 25px;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .btn-explore:hover { background: #00796b; }
+.city-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
 
-        /* --- AMENITIES SHORTCUTS (Inside Modal) --- */
-        .amenities-box {
-            background: #e0f2f1;
-            padding: 25px;
-            border-radius: 12px;
-            margin-top: 25px;
-            border-left: 5px solid var(--primary);
-        }
-        .amenity-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 15px;
-        }
-        .amenity-btn {
-            background: var(--white);
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .amenity-btn:hover {
-            background: var(--primary);
-            color: var(--white);
-            transform: scale(1.05);
-        }
+.city-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+.city-card:hover { transform: translateY(-8px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+.city-img { height: 220px; width: 100%; object-fit: cover; }
+.city-info { padding: 20px; text-align: center; }
+.city-name { font-size: 1.5rem; margin-bottom: 10px; font-weight: 700; color: var(--dark); }
+.city-desc { font-size: 0.9rem; color: #666; margin-bottom: 15px; }
 
-        /* --- FOOTER --- */
-        footer {
-            background: var(--dark);
-            color: var(--white);
-            text-align: center;
-            padding: 30px;
-            margin-top: 60px;
-        }
+.btn-explore {
+    background: var(--primary); color: white; padding: 10px 25px;
+    border-radius: 25px; font-weight: 600; cursor: pointer; border: none;
+    transition: 0.3s;
+}
+.btn-explore:hover { background: #00796b; }
 
-        /* Mobile Adjustments */
-        @media(max-width: 600px) {
-            header h1 { font-size: 2rem; }
-            .city-grid { grid-template-columns: 1fr; }
-            #citySearch{
-                padding: 12px 6px 10px 15px;
-            }
-        }
-     
-        
-        /* --- CSS STYLING --- */
-        :root {
-            --primary: #009688;
-            --accent: #ff9800;
-            --dark: #2c3e50;
-            --light: #f4f7f6;
-        }
+/* --- MODAL --- */
+.modal { 
+    display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
+    background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center; 
+    backdrop-filter: blur(5px);
+}
+.modal-content { 
+    background:white; width:95%; max-width:700px; max-height:85vh; 
+    overflow-y:auto; border-radius:15px; padding:25px; position:relative; 
+}
+.close-btn { position:absolute; top:10px; right:20px; font-size:2.5rem; cursor:pointer; color:#777; }
+#modalImg { width: 100%; height: 250px; object-fit: cover; border-radius: 12px; margin: 15px 0; }
 
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--light); color: var(--dark); }
-        
-        header { 
-            background: var(--primary); 
-            color: white; 
-            padding: 15px 5%; 
-            display: flex; 
-            flex-wrap: wrap;
-            justify-content: space-around; 
-            align-items: center;
-            position: sticky;
-            top: 0;
-            text-align: center;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+.amenities-box { background:#e0f2f1; padding:20px; border-radius:12px; margin:20px 0; border-left: 5px solid var(--primary); }
+.amenity-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+.amenity-btn { 
+    background:white; color:var(--primary); padding: 8px 16px; border-radius:20px; 
+    border:1px solid var(--primary); font-size:0.9rem; font-weight:bold; text-decoration: none;
+}
+.amenity-btn:hover { background: var(--primary); color: white; }
 
-        .search-container input { 
-            padding: 12px 20px; 
-            border-radius: 25px; 
-            border: none; 
-            width: 280px; 
-            outline: none;
-            font-size: 14px;
-        }
+footer { background: var(--dark); color: var(--white); text-align: center; padding: 30px; margin-top: 60px; }
 
-        .container { padding: 40px 5%; max-width: 1200px; margin: auto; }
-        .section-title { text-align: center; margin-bottom: 30px; font-size: 2rem; color: var(--primary); }
-
-        /* City Grid */
-        .city-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .city-card { 
-            background: white; 
-            border-radius: 15px; 
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
-            transition: 0.3s; 
-            cursor: pointer;
-        }
-        .city-card:hover { transform: translateY(-10px); }
-        
-        .city-info { padding: 20px; text-align: center; }
-        .btn-explore { background: var(--accent); color: white; padding: 10px; border-radius: 8px; font-weight: bold; margin-top: 10px; }
-
-        /* Modal Styling */
-        .modal { 
-            display:none; 
-            position:fixed; 
-            top:0; left:0; width:100%; height:100%; 
-            background:rgba(0,0,0,0.85); 
-            z-index:1000; 
-            justify-content:center; 
-            align-items:center; 
-            backdrop-filter: blur(5px); 
-            border-radius: 12px;
-        }
-        .modal-content { 
-            background:white; 
-            width:90%; 
-            max-width:750px; 
-            max-height:90vh; 
-            overflow-y:auto; 
-            border-radius:15px; 
-            padding:25px; 
-            position:relative; 
-        }
-        .close-btn { position:absolute; top:15px; right:25px; font-size:2.5rem; cursor:pointer; color:#777; }
-
-        /* Amenities Box */
-        .amenities-box { background:#e0f2f1; padding:15px; border-radius:12px; margin:20px 0; }
-        .amenity-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
-        .amenity-btn { 
-            text-decoration:none; 
-            background:white; 
-            color:var(--primary); 
-            padding:8px 15px; 
-            border-radius:20px; 
-            border:1px solid var(--primary); 
-            font-size:0.85rem; 
-            font-weight:bold;
-            transition: 0.2s;
-        }
-        .amenity-btn:hover { background: var(--primary); color: white; }
-
-        /* Places Styling */
-        .places-grid { display: grid; grid-template-columns: 1fr; gap: 25px; margin-top: 20px; }
-        .place-item { border: 1px solid #eee; border-radius: 12px; padding: 15px; background: #fff; transition: 0.5s; }
-        .place-item img { width: 100%; height: 220px; object-fit: cover; border-radius: 10px; }
-        .reach-box { background: #f9f9f9; padding: 10px; border-radius: 8px; margin: 10px 0; font-size: 0.9rem; border-left: 4px solid var(--accent); }
-        .direction-btn { 
-            display:inline-block; 
-            background:#4285F4; 
-            color:white; 
-            padding:10px 20px; 
-            text-decoration:none; 
-            border-radius:5px; 
-            font-weight:bold; 
-            font-size:0.9rem; 
-        }
-    
+/* Mobile */
+@media(max-width: 600px) {
+    header h1 { font-size: 1.8rem; }
+    .city-grid { grid-template-columns: 1fr; }
+}

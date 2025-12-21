@@ -43,20 +43,23 @@ header h1 { font-size: 2.5rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgb
 .center-wrapper { text-align: center; }
 
 .city-grid {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
+    flex-wrap: wrap;
 }
 
 .city-card {
     background: var(--white);
-    border-radius: 15px;
+    border-radius: 12px;
     overflow: hidden;
+    width: 44%;
+    margin: auto;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     transition: all 0.3s ease;
 }
 .city-card:hover { transform: translateY(-8px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
-.city-img { height: 220px; width: 100%; object-fit: cover; }
+.city-img { height: 100px; width: 100%; object-fit: cover; }
 .city-info { padding: 20px; text-align: center; }
 .city-name { font-size: 1.5rem; margin-bottom: 10px; font-weight: 700; color: var(--dark); }
 .city-desc { font-size: 0.9rem; color: #666; margin-bottom: 15px; }
@@ -93,6 +96,6 @@ footer { background: var(--dark); color: var(--white); text-align: center; paddi
 
 /* Mobile */
 @media(max-width: 600px) {
-    header h1 { font-size: 1.8rem; }
+    header h1 { font-size: 3rem; }
     .city-grid { grid-template-columns: 1fr; }
 }
